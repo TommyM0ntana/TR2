@@ -1,3 +1,21 @@
+nav a {
+  color: rgb(17, 11, 11);
+
+}
+h5 a {
+  color: rgb(17, 11, 11);
+  font-weight: bold;
+  font-size: 25px;
+}
+.logo {
+  padding: 20px;
+}
+.footer {
+  position: fixed;
+    height: 100px;
+    bottom: 0;
+    width: 100%;
+}
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
