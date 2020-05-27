@@ -1,0 +1,12 @@
+<%= provide(:title, @user.name)%>
+<div class='my-5 d-flex py-3'>
+
+ <%= gravatar_for @user %>
+ 
+<h1 class='pt-4 pl-4'>Username: <%= @user.name %></h1>
+</div>
+<h2>Email: <%= @user.email %></h2>
+
+<p>Account create: <%= @user.created_at %></p>
+
+<%=Time.now%>
