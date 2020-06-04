@@ -1,5 +1,3 @@
-@import "bootstrap-sprockets";
-@import "bootstrap";
 @import "rails_bootstrap_forms";
 
 @mixin box_sizing {
@@ -11,24 +9,26 @@ label {
   font-size: 18px;
 }
 li {
-  font-size: 14px;
+  font-size: 12px;
 }
 .form-control {
   height: 30px !important;
 }
 .debug_dump {
+  padding: 16px;
+  background-color: rgba(235, 236, 238, 0.705);
   clear: both;
   float: center;
-  width: 90%;
+  width: 80%;
   margin: auto;
-  box-shadow: 0 8px 6px -6px black;
+  box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.473);
   margin-top: 12px;
-  font-size: 10px;
+  font-size: 12px;
   @include box_sizing;
 }
 
 body a {
-  font-size: 1.5rem !important;
+  font-size: 1.1rem !important;
 }
 
 nav a {
@@ -53,6 +53,13 @@ p {
 }
 body.main {
   background-color: #e3e8ee;
+
+  td {
+    font-size: 11px;
+  }
+  th {
+    font-size: 13px;
+  }
 }
 
 /*
