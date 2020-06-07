@@ -1,10 +1,31 @@
-<div class="d-flex flex-column flex-md-row align-items-center p-4 px-md-4 mb-3 bg-white     
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white     
 border-bottom shadow-sm"> 
   <h5 class="my-0 mr-md-auto font-weight-normal">
      <a class="p-4 text-dark" href="#"><%= link_to 'TrainingApp', root_path, class:'navbar-brand' %></h5></a>
    <nav class="px-5 my-2 my-md-0 mr-md-3 d-flex">
+   
     <%= link_to 'Home', root_path, class: 'nav-link' %>
     <%= link_to 'Help', help_path, class: 'nav-link' %>
-    <%= link_to 'Contacts', contacts_path, class: 'nav-link' %>
+      <% if logged_in? %>
+       <%= link_to "Users", '#', class: 'nav-link' %>
+        <ul class="nav-item dropdown">
+         <li class="h5 nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
+          Account
+        </li>
+        <div class="dropdown-menu shadow" aria-labelledby="navbarDropdown ">
+          <li class="dropdown-item" href="#">
+             <%= link_to 'Profile' , current_user %> </li>
+          <li class="dropdown-item" href="#">
+           <%= link_to 'Settings' , '#' %> 
+          </li>
+          <div class="dropdown-divider"></div>
+           <li class="dropdown-item" href="#">
+             <%= link_to 'Log out', logout_path, method: :delete %>
+          </li>
+        </div>
+      </ul>
+      <% else %>
+    <a><%= link_to 'Log in', login_path, class: 'btn btn-outline-dark' %></a>
+    <%end%>
    </nav>
 </div>

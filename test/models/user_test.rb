@@ -65,4 +65,6 @@ test "password minimum char of 5" do
   assert_not @user.valid?
 end
 
+
+
 end
