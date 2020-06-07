@@ -1,9 +1,6 @@
 require 'test_helper'
 
 class SiteLayoutTest < ActionDispatch::IntegrationTest
-  # test "the truth" do
-  #   assert true
-  # end
 
 test 'layout links' do
   get root_path
@@ -11,7 +8,8 @@ test 'layout links' do
   assert_select 'a[href=?]', root_path, count:2
   assert_select 'a[href=?]', help_path 
   assert_select 'a[href=?]', about_path
-  assert_select 'a[href=?]', contacts_path, count:2
+  assert_select 'a[href=?]', contacts_path, count:1
 end
+
 
 end

@@ -2,14 +2,13 @@
 border-bottom shadow-sm"> 
   <h5 class="my-0 mr-md-auto font-weight-normal">
      <a class="p-4 text-dark" href="#"><%= link_to 'TrainingApp', root_path, class:'navbar-brand' %></h5></a>
-   <nav class="px-5 my-2 my-md-0 mr-md-3 d-flex">
-   
-    <%= link_to 'Home', root_path, class: 'nav-link' %>
+   <nav class="px-5 my-2  d-flex ">
+   <%= link_to 'Home', root_path, class: 'nav-link' %>
     <%= link_to 'Help', help_path, class: 'nav-link' %>
       <% if logged_in? %>
        <%= link_to "Users", '#', class: 'nav-link' %>
         <ul class="nav-item dropdown">
-         <li class="h5 nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
+        <li class="h5 nav-link dropdown-toggle mt-1" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Account
         </li>
         <div class="dropdown-menu shadow" aria-labelledby="navbarDropdown ">
@@ -19,8 +18,8 @@ border-bottom shadow-sm">
            <%= link_to 'Settings' , '#' %> 
           </li>
           <div class="dropdown-divider"></div>
-           <li class="dropdown-item" href="#">
-             <%= link_to 'Log out', logout_path, method: :delete %>
+          <li class="dropdown-item" href="#">
+         <%= link_to 'Log out', logout_path, method: :delete %>
           </li>
         </div>
       </ul>

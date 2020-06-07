@@ -1,5 +1,6 @@
 @import "rails_bootstrap_forms";
 @import "bootstrap-sprockets";
+@import "bootstrap";
 
 @mixin box_sizing {
   -moz-box-sizing: border-box;
@@ -10,8 +11,9 @@ label {
   font-size: 18px;
 }
 li {
-  font-size: 12px;
+  font-size: 16px !important;
 }
+
 .form-control {
   height: 30px !important;
 }
@@ -29,7 +31,7 @@ li {
 }
 
 body a {
-  font-size: 1.1rem !important;
+  font-size: 1.6rem !important;
 }
 
 nav a {
@@ -79,5 +81,7 @@ body.main {
  *= require_self
  *= require bootstrap-sprockets
  *= require rails_bootstrap_forms
+ *= require bootstrap
+
 
  */
