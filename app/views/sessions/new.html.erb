@@ -5,5 +5,11 @@
   <%= f.text_field :email %>
   <%= f.password_field :password %>
   <%= f.submit "Log in", class: 'btn btn-lg btn-primary mb-3 mt-3 '%>
-  <p> New User? <%= link_to ' Signup ', signup_path, class: 'font-weight-bold text-success' %> </p>
+  <br>
+  <%= f.check_box :remember_me, class: 'checkbox' do %>
+  <br>
+   <span> Remember me on this computer </span>
+  <%end%>
+  <br>
+  <p class='ml-4'> New User? <%= link_to ' Signup ', signup_path, class: 'font-weight-bold text-success' %> </p>
  <%end%>
