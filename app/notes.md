@@ -77,3 +77,43 @@ end
     update_attribute(:remember_digest, nil)
     #remember_token = nul
     end
+
+12) Edit form.
+13) Inspecting we notice that we have in the form tag POST Request and it should be PATCH. E sotto invece nell'input abbiamo il value= 'PATCH'.é cosi che finge un patch nel browser?
+    Browsers can't send PATCH requests natively
+    finge una PATCH request inside of the browser.
+    with the extra input field.
+
+Why? is all automated by users :resources like just knows that routes this post request and if value patch to actually make a patch request to the right action on the users contoller?
+So patch update action.
+How it knows to put this extra input fields?
+The code in the both forms new and edit is exatcly the same :
+<%= form_with(model: @user, local: true) do |f| %>
+HTTPrequest URL Action Named route Purpose
+
+GET /users/1/edit edit edit_user_path to edit user id 1
+
+DELETE /users/1 destroy user_path(user) delete user
+
+He expalains with the new_record method,thet is actually a boolean meethod to understand if the user is new and on the base on that just knows that if is new to create a post request and if not new already exist will create a PATCH request.
+
+10.1.4 Successful Edits
+
+Test di accetazione. TDD
+
+test 'successful edit' do
+get edit_user_path(@user)
+assert_template 'users/edit'
+name = 'Tommy'
+email = 'tommy@gmail.com'
+patch user_path(@user), params: { user: { name: name,
+email: email,
+password:'',
+password_confirmation:'' }}
+
+assert_not flash.empty?
+assert_redirected_to @user
+@user.reload
+assert_equal name, @user.name
+assert_equal email, @user.email
+end

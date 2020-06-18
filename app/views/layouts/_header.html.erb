@@ -6,7 +6,7 @@ border-bottom shadow-sm">
    <%= link_to 'Home', root_path, class: 'nav-link' %>
     <%= link_to 'Help', help_path, class: 'nav-link' %>
       <% if logged_in? %>
-       <%= link_to "Users", '#', class: 'nav-link' %>
+       <%= link_to "Users", users_path, class: 'nav-link' %>
         <ul class="nav-item dropdown">
         <li class="h5 nav-link dropdown-toggle mt-1" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Account
@@ -15,7 +15,7 @@ border-bottom shadow-sm">
           <li class="dropdown-item" href="#">
              <%= link_to 'Profile' , current_user %> </li>
           <li class="dropdown-item" href="#">
-           <%= link_to 'Settings' , '#' %> 
+           <%= link_to 'Settings' , edit_user_path(current_user) %> 
           </li>
           <div class="dropdown-divider"></div>
           <li class="dropdown-item" href="#">

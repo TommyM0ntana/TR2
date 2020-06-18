@@ -1,5 +1,6 @@
 class User < ApplicationRecord
-  #add virtual attributes for the remember token
+
+  #add virtual attributes for the remember token 
   attr_accessor :remember_token
   before_save { self.email = email.downcase }
   validates :name, presence: true, length: { maximum: 50}
@@ -11,7 +12,7 @@ class User < ApplicationRecord
             #autom creates virtual attributes pass & pass_confirmation
             #doesn't exist in the database
   has_secure_password
-  validates :password, presence: true, length: {minimum: 6}
+  validates :password, presence: true, length: {minimum: 6}, allow_nil: true
 
 #Returns the hash digest of the goven string
 def User.digest(string)
@@ -50,7 +51,6 @@ end
 def forget
   update_attribute(:remember_digest, nil)
 end
-
 
 
 end
