@@ -1,4 +1,8 @@
-<%= provide(:title, 'Update')%>
+<%= provide(:title, 'Edit user')%>
 <%= provide(:button_text, 'Save Changes') %>
   <h1 class='py-3'>Edit Profile</h1>
+   <div class="gravatar_edit py-3">
+      <%= gravatar_for @user %>
+      <a href="https://gravatar.com/emails" target="_blank">Change image</a>
+  </div>
   <%= render 'users/form' %>

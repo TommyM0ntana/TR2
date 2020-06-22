@@ -12,7 +12,7 @@ class User < ApplicationRecord
             #autom creates virtual attributes pass & pass_confirmation
             #doesn't exist in the database
   has_secure_password
-  validates :password, presence: true, length: {minimum: 6}, allow_nil: true
+  validates :password,presence: true, length: {minimum: 6}, allow_nil: true
 
 #Returns the hash digest of the goven string
 def User.digest(string)

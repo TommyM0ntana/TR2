@@ -5,8 +5,26 @@ tommy:
   name: Tommy Harwood
   email: tommy@gmail.com
   password_digest: <%= User.digest('password') %>
+  admin: true
+
+timmy:
+  name: timmy Quarantino
+  email: timmy@gmail.com
+  password_digest: <%= User.digest('password') %>
+
+sammy:
+  name: Sammy Harwood
+  email: sammy@gmail.com
+  password_digest: <%= User.digest('password') %>
 
 jimmy:
   name: Jimmy Quarantino
   email: jimmy@gmail.com
   password_digest: <%= User.digest('password') %>
+
+<% 30.times do |n| %>
+user_<%= n %>:
+  name:  <%= "User #{n}" %>
+  email: <%= "user-#{n}@example.com" %>
+  password_digest: <%= User.digest('password') %>
+<% end %>

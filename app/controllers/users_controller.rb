@@ -1,13 +1,17 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:index, :edit, :update]
+  #Specify that only how's logged in can do this actions
+  before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
+  #Specify that only the user it self can edit and update
   before_action :correct_user, only: [:edit, :update]
+  #Specify that only admin users can delete 
+  before_action :admin_user,     only: :destroy
 
   def new
     @user = User.new
   end
 
   def index
-   @users = User.all
+    @users = User.paginate(page: params[:page])
   end
 
   def edit
@@ -39,6 +43,12 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    User.find(params[:id]).destroy
+    flash[:success] = 'User deleted'
+    redirect_to users_path
+  end
+
 private
 
   def user_params
@@ -49,19 +59,21 @@ private
   #Before filters,confirm a logged-in-user
   def logged_in_user
     unless logged_in?
-      #se non logato archiviami questo url in modo tale che una volta logato ti reindirizzero?
+      #se non logato archiviami/salvami questo url in modo tale che una volta logato proseguiremo la dove volevamo arrivare?
       store_location
       flash[:danger] = "Please log in."
       redirect_to login_url
     end
   end
 
-# Confirms the correct user.
+# Confirms the correct user to let him edit and update his proper profile/data
   def correct_user
     @user = User.find(params[:id])
-    redirect_to root_path unless @user == current_user
+    redirect_to root_path unless @user && @user == current_user
   end
   
-
+  def admin_user
+    redirect_to(root_url) unless current_user.admin?
+  end
 
 end

@@ -25,7 +25,7 @@ li {
   width: 80%;
   margin: auto;
   box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.473);
-  margin-top: 12px;
+  margin-bottom: 12px;
   font-size: 12px;
   @include box_sizing;
 }
@@ -46,7 +46,6 @@ h5 a {
   padding: 20px;
 }
 .footer {
-  position: fixed;
   height: 100px !important;
   bottom: 0;
   width: 100%;
