@@ -78,8 +78,6 @@ end
     #remember_token = nul
     end
 
-
-
 12) Edit form.
 13) Inspecting we notice that we have in the form tag POST Request and it should be PATCH. E sotto invece nell'input abbiamo il value= 'PATCH'.é cosi che finge un patch nel browser?
     Browsers can't send PATCH requests natively
@@ -99,25 +97,31 @@ DELETE /users/1 destroy user_path(user) delete user
 
 He expalains with the new_record method,thet is actually a boolean meethod to understand if the user is new and on the base on that just knows that if is new to create a post request and if not new already exist will create a PATCH request.
 
+Chapter 10
 
+Domanda 1)
+
+10.1.1
+
+Perchè nel form di login e edit abbiamo lo stesso form e due metodi diversi?Quello dell'edit dovrebbe essere PATCH invece è POST.
+
+Domanda 2)
 
 10.1.4 Successful Edits
 
-Test di accetazione. TDD
+1. Store location. Relationship with the session?
+2. Assegnamento password allow_nil del user. How it knows that have to goes to the integration test validation?
+   3)Differenza tra assert e assert_not_nil?
 
-test 'successful edit' do
-  get edit_user_path(@user)
-  assert_template 'users/edit'
-  name = 'Tommy'
-  email = 'tommy@gmail.com'
-  patch user_path(@user), params: { user: { name: name,
-  email: email,
-  password:'',
-  password_confirmation:'' }}
+Domanda 3)
 
-  assert_not flash.empty?
-  assert_redirected_to @user
-  @user.reload
-  assert_equal name, @user.name
-  assert_equal email, @user.email
-end
+10.3.2
+
+Sample users / Seeds
+
+Differenza tra metodo create e create! nel seeds?(eccezione se dovesse falire per un qualsiasi motivo )
+Facilita il debugging impedendo che gli errori passino inosservati.
+
+Chap 11
+
+Mailer Why have 2 user_mailer templates one html and one plain text?
