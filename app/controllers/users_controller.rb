@@ -15,11 +15,9 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
     if @user.update(user_params)
       flash[:success] = 'Profile Updated'
       redirect_to @user 
@@ -40,6 +38,7 @@ class UsersController < ApplicationController
       # redirect_to @user
       #Loads up the mailer and deliver it
       UserMailer.account_activation(@user).deliver_now
+      #send_activation_email
       flash[:info] = "Please check your email to activate your account."
       redirect_to root_url
     else

@@ -1,0 +1,8 @@
+<%= provide(:title, 'Forgot Password')%>
+<h1 class='py-3 text-center h1'>Forgot password</h1>
+
+<%= bootstrap_form_with(url: password_resets_path, scope: :password_reset, local: true) do |f| %> 
+  <%= f.text_field :email %>
+  <%= f.submit "Submit", class: 'btn btn-lg btn-primary mb-3 mt-3'%>
+  
+ <%end%>

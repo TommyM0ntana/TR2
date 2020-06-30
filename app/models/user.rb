@@ -1,6 +1,6 @@
 class User < ApplicationRecord
- #add virtual attributes for the remember token 
-  attr_accessor :remember_token, :activation_token
+  #add virtual attributes for the remember token 
+  attr_accessor :remember_token, :activation_token, :reset_token
   #action that fires of before the active record obj was created
   before_create :create_activation_digest
   before_save :downcase_email
@@ -15,14 +15,14 @@ class User < ApplicationRecord
   has_secure_password
   validates :password, presence: true, length: {minimum: 6}, allow_nil: true
 
-#Returns the hash digest of the given string
+ #Returns the hash digest of the given string
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
      BCrypt::Engine.cost
      BCrypt::Password.create(string, cost: cost)
   end
 
-#Returns a random token 
+ #Returns a random token 
   def User.new_token
     SecureRandom.urlsafe_base64
   end
@@ -36,7 +36,7 @@ class User < ApplicationRecord
     update_attribute(:remember_digest, User.digest(remember_token)) #Update the remember_digest with the digest of the token
   end
 
-# # Compair & returns true if the given remember token matches with the remember digest.
+ # Compair & returns true if the given remember token matches with the remember digest.
   # def authenticated?(remember_token)
   #     return false if remember_digest.nil?
   #     BCrypt::Password.new(remember_digest).is_password?(remember_token)
@@ -57,6 +57,22 @@ end
     update_attribute(:remember_digest, nil)
   end
 
+  # Assign && create new password reset attributes.
+  def create_reset_digest
+    self.reset_token = User.new_token
+    update_attribute(:reset_digest,  User.digest(reset_token))
+    update_attribute(:reset_sent_at, Time.zone.now)
+  end
+
+  # Sends password reset email.
+  def send_password_reset_email
+    UserMailer.password_reset(self).deliver_now
+  end
+
+  def password_reset_expired?
+    reset_sent_at < 2.hours.ago
+  end
+
   private
   
   def downcase_email
@@ -64,13 +80,14 @@ end
     # self.email = email.downcase
   end
 
- #Create and assigns the activation token and digest to user.
+ #Create and assigns the activation token and digest to the new user.
   def create_activation_digest
     #create new activation_token to user
     self.activation_token = User.new_token
     #associate and save the digest in database automaticaly when we create the user
-    self.activation_digest = User.digest(activation_token)
+    #created in memory and will be saved automaticaly when the create goes true
+     self.activation_digest= User.digest(activation_token)
   end
-
+  
 
 end
