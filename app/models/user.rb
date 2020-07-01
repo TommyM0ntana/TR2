@@ -86,7 +86,7 @@ end
     self.activation_token = User.new_token
     #associate and save the digest in database automaticaly when we create the user
     #created in memory and will be saved automaticaly when the create goes true
-     self.activation_digest= User.digest(activation_token)
+    self.activation_digest= User.digest(activation_token)
   end
   
 
