@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAIA,AAAA,IAAI,CAAC;EACH,SAAS,EAAE,eAAe;CAC3B",
+    "sources": [
+        "sessions.scss"
+    ],
+    "names": [],
+    "file": "sessions.css"
+}

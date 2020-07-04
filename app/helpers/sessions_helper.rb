@@ -41,9 +41,9 @@ module SessionsHelper
   end
 
   #returns true if the user is logged in, false otherwise
-  def logged_in?
-     !current_user.nil?
-  end
+   def logged_in?
+      !current_user.nil?
+   end
 
   #Forget/delete a persistent session,the opposite of the remember(user) method
 def forget(user)

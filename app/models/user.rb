@@ -1,5 +1,7 @@
 class User < ApplicationRecord
- #add virtual attributes for the remember token 
+  #when delete the user delete his microposts too
+  has_many :microposts, dependent: :destroy
+  #add virtual attributes for the remember token 
   attr_accessor :remember_token, :activation_token
   #action that fires of before the active record obj was created
   before_create :create_activation_digest
@@ -14,7 +16,6 @@ class User < ApplicationRecord
             #doesn't exist in the database
   has_secure_password
   validates :password, presence: true, length: {minimum: 6}, allow_nil: true
-
 #Returns the hash digest of the given string
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
@@ -55,6 +56,10 @@ end
 #Just undo the remember, returning the digest with nil
   def forget
     update_attribute(:remember_digest, nil)
+  end
+
+  def feed
+   Micropost.where("user_id = ?", id)
   end
 
   private

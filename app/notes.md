@@ -124,4 +124,33 @@ Facilita il debugging impedendo che gli errori passino inosservati.
 
 Chap 11
 
-Mailer Why have 2 user_mailer templates one html and one plain text?
+1.What means when user is saved in memory e in database?
+
+assert user.reload.activated?
+before make the update with reload.
+
+2.Test utilities?
+assert = true
+assert_not_nil = that is not nil?
+
+Chap 12
+
+3.Non avendo disponibile la email come parametro nel reset_form si inserisce:
+<%= hidden_field_tag :email, @user.email %>
+E' l'unico modo di avere i parametri della email del user available?
+
+http://example.com/password_resets/3BdBrXeQZSWqFIDRN8cxHA/edit?email=foo%40bar.com
+
+chap 13
+
+test 'User id should be present' do
+@micropost.user_id = nil
+assert_not @micropost.valid?
+
+# assert @micropost.user_id.present?
+
+# assert_not @micropost.user_id.blank?
+
+# assert_not_nil @micropost.user_id
+
+default_scope -> { order(created_at: :desc) }

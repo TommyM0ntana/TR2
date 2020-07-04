@@ -1,0 +1,22 @@
+ <div class="container p-4 m-4">
+   <li class='card-header p-4 micropost-<%= micropost.id %>'>
+     <%= link_to gravatar_for(micropost.user), micropost.user %>
+    <br>
+     <div class='mt-3'><%= link_to micropost.user.name %></div>
+    <br>
+     <%= micropost.content %>
+    <br>
+     <hr>
+     <blockquote class="blockquote mb-0">
+      <p>Posted </p>
+      <footer class="blockquote-footer">
+      <cite title="text-center Source Title ">
+      <%= time_ago_in_words(micropost.created_at) %> ago.
+        <% if current_user?(micropost.user) %>
+        <%= link_to 'Delete', micropost, method: :delete,
+                                                  data: { confirm: 'Are you Sure?' } %>
+      <% end %>
+      </cite></footer>
+    </blockquote>
+   </li>
+ </div>

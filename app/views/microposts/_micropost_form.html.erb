@@ -1,0 +1,7 @@
+<%= provide(:button_text, 'SUBMIT POST' )%>
+<%= form_with(model: @micropost, local: true) do |f| %>
+ <%= render 'shared/error_messages', object: f.object %>
+  <%= f.text_area :content, class: 'form-c', placeholder: "Compose new micropost..." %>
+  <br>
+  <%= f.submit yield(:button_text), class: 'btn btn-lg btn-primary mb-5 mt-3'%>
+  <% end %>

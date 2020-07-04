@@ -30,6 +30,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @microposts = @user.microposts.paginate(page: params[:page])
   end
 
   def create
@@ -60,16 +61,6 @@ private
                                 :password_confirmation)
   end
 
-  #Before filters,confirm a logged-in-user
-  #unless da sostituire con il if not
-  def logged_in_user
-    if !logged_in?
-      #se non loggato archiviami/salvami questo url in modo tale che una volta loggato,mi reindirizzi?
-      store_location
-      flash[:danger] = "Please log in."
-      redirect_to login_url
-    end
-  end
 
 # Confirms the correct user to let him edit and update his proper profile/data
   def correct_user

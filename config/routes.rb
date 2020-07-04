@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   root 'static_pages#home'
   resources :users
+  resources :microposts, only: [:create, :destroy]
   get     '/about', to: 'static_pages#about'
   get      '/help', to: 'static_pages#help'
   get  '/contacts', to: 'static_pages#contacts'
@@ -10,4 +11,5 @@ Rails.application.routes.draw do
   post    '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
   resources :account_activations, only: [:edit]
+  
 end

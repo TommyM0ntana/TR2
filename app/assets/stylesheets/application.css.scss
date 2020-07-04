@@ -64,6 +64,23 @@ body.main {
   }
 }
 
+.container li {
+  list-style-type: none;
+}
+
+textarea.form-c {
+  width: 50%;
+  height: 130px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  resize: none;
+  margin: 10px 0px;
+  font-size: 20px;
+}
+
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
