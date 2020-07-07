@@ -1,12 +1,14 @@
- <div class="container p-4 m-4">
-   <li class='card-header p-4 micropost-<%= micropost.id %>'>
+ <div class="container py-4 my-4 ">
+   <li class='shadow bg-light card p-4 micropost-<%= micropost.id %>'>
      <%= link_to gravatar_for(micropost.user), micropost.user %>
     <br>
-     <div class='mt-3'><%= link_to micropost.user.name %></div>
+     <div><%= link_to micropost.user.name %></div>
     <br>
      <%= micropost.content %>
     <br>
      <hr>
+     <%= image_tag micropost.display_image if micropost.image.attached? %>
+
      <blockquote class="blockquote mb-0">
       <p>Posted </p>
       <footer class="blockquote-footer">
@@ -15,7 +17,7 @@
         <% if current_user?(micropost.user) %>
         <%= link_to 'Delete', micropost, method: :delete,
                                                   data: { confirm: 'Are you Sure?' } %>
-      <% end %>
+        <% end %>
       </cite></footer>
     </blockquote>
    </li>

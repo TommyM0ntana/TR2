@@ -4,6 +4,7 @@ class MicropostsController < ApplicationController
 
   def create
     @micropost = current_user.microposts.build(micropost_params)
+    #@micropost.image.attach(params [:micropost][:image])
     if @micropost.save
       flash[:success] = 'Micropost created!'
       redirect_to root_path
@@ -16,20 +17,29 @@ end
   def destroy
      @micropost.destroy
      flash[:success] = 'Microposts Deleted'
-     #redirect_to request.referrer || root_url
-     redirect_back(fallback_location: root_url)
+     redirect_to request.referrer || root_url
+     #redirect_back(fallback_location: root_url)
+     
   end
 
   private
 
   def micropost_params
-    params.require(:micropost).permit(:content)
+    params.require(:micropost).permit(:content, :image)
   end
 
   def correct_user
    @micropost = current_user.microposts.find_by(id: params[:id])
    redirect_to root_path if @micropost.nil?
   end
+
+  # def correct_user
+  #   if !(@micropost ||= current_user.microposts.find_by(id: params[:id]))
+  #     redirect_to root_path
+  #   end
+  # end
+
+  
 
 
 end

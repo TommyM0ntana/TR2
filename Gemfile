@@ -6,9 +6,11 @@ ruby '2.6.5'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.1'
 # Use sqlite3 as the database for Active Record
+
 gem 'image_processing',           '1.9.3'
+gem 'jquery-rails'
 gem 'mini_magick',                '4.9.5'
-gem 'active_storage_validations', '0.8.2'
+gem 'active_storage_validations'
 gem 'bcrypt',                     '3.1.13'
 gem 'faker',                      '2.1.2'
 gem 'will_paginate',              '3.1.8'

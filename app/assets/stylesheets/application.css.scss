@@ -81,6 +81,10 @@ textarea.form-c {
   font-size: 20px;
 }
 
+.img {
+  margin-left: 200px;
+}
+
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
@@ -98,6 +102,8 @@ textarea.form-c {
  *= require bootstrap-sprockets
  *= require rails_bootstrap_forms
  *= require bootstrap
+ *= require jquery
+ *= require jquery_ujs
 
 
  */

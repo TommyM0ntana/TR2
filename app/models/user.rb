@@ -16,21 +16,21 @@ class User < ApplicationRecord
             #doesn't exist in the database
   has_secure_password
   validates :password, presence: true, length: {minimum: 6}, allow_nil: true
-#Returns the hash digest of the given string
+  #Returns the hash digest of the given string
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
      BCrypt::Engine.cost
      BCrypt::Password.create(string, cost: cost)
   end
 
-#Returns a random token 
+  #Returns a random token 
   def User.new_token
     SecureRandom.urlsafe_base64
   end
 
-#create corrinsponding digest to the token
-#Remember a user in the database for use a persistent sessions when they log in
-#calling the user.remember to find the user with the remember token that #is in database and create a remember digest 
+  #create corrinsponding digest to the token
+  #Remember a user in the database for use a persistent sessions when they log in
+  #calling the user.remember to find the user with the remember token that #is in database and create a remember digest 
   def remember
     #Create new token/remember token
     self.remember_token = User.new_token  
@@ -58,6 +58,8 @@ end
     update_attribute(:remember_digest, nil)
   end
 
+  #defines a proto-feed
+  #see the full Following users implementation,SQL injection
   def feed
    Micropost.where("user_id = ?", id)
   end
