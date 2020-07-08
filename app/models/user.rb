@@ -61,7 +61,7 @@ end
   #defines a proto-feed
   #see the full Following users implementation,SQL injection
   def feed
-   Micropost.where("user_id = ?", id)
+    Micropost.where("user_id = ?", id)
   end
 
   private

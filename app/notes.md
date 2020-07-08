@@ -143,6 +143,8 @@ http://example.com/password_resets/3BdBrXeQZSWqFIDRN8cxHA/edit?email=foo%40bar.c
 
 chap 13
 
+1.micropost_test/test
+
 test 'User id should be present' do
 @micropost.user_id = nil
 assert_not @micropost.valid?
@@ -153,4 +155,9 @@ assert_not @micropost.valid?
 
 # assert_not_nil @micropost.user_id
 
-default_scope -> { order(created_at: :desc) }
+2. Differenza tra find_by e where?
+   fare esempio nella console.
+
+3. default_scope -> { order(created_at: :desc) }
+
+4.microposts_controller/correct_user

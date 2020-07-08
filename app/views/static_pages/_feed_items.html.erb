@@ -1,4 +1,5 @@
 <% if @feed_items.any? %>
  <%= render @feed_items %>
-<%= will_paginate @feed_items,  params: { controller: :static_pages, action: :home }  %>
+ <%= will_paginate @feed_items,
+                  params: { controller: :static_pages, action: :home }  %>
 <% end %>

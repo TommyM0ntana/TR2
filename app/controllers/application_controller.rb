@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   private
   
-  #Before filters,confirm a logged-in-user
+  #Before filters, confirm a logged-in-user
   def logged_in_user
     if !logged_in?
       #se non loggato archiviami/salvami questo url in modo tale che una volta loggato,mi reindirizzi?
