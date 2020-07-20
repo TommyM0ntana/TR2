@@ -13,10 +13,10 @@ class MicropostTest < ActiveSupport::TestCase
  end
 
  test 'User id should be present' do
-    @micropost.user_id = nil
-    assert_not @micropost.valid?
+    # @micropost.user_id = nil
+    # assert_not @micropost.valid?
    
-   # assert_not @micropost.user_id.nil?
+    # assert_not @micropost.user_id.nil?
 
    # assert_not @micropost.user_id.blank?
    # assert_not_nil @micropost.user_id

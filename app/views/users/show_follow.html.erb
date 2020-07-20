@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <%= gravatar_for@user %>
+      <h1><%= @user.name.capitalize %></h1>
+       <h3>Microposts: <%= @user.microposts.count %></h3>
+       <%= link_to 'Profile', @user %>
+        <p><%= render 'shared/stats' %></p>
+        <br>
+        <% if @users.any? %>
+          <% @users.each do |user| %>
+            <%= link_to gravatar_for(user),user ,class:'img-fluid img-thumbnail' %>
+          <% end %>
+        <% end %>
+    </div>
+       <div class="col-md-6">
+         <h1 class='d-flex justify-content-center p-4'> <%= @title %> </h1>
+          <% if @users.any? %>
+             <% @users.each do |user| %>
+              <li class='list-group-item card-header bg-light' >
+              <%= gravatar_for(user) %>
+              <%= link_to @user.name, user %>
+              </li>
+           <% end %>
+          <%= will_paginate @users %>
+          <% end %>
+       </div>
+  </div>
+</div>

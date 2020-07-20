@@ -1,4 +1,14 @@
 class User < ApplicationRecord
+ has_many :active_relationships, class_name:  "Relationship",
+                                 foreign_key: "follower_id",
+                                 dependent:   :destroy
+ has_many :following, through: :active_relationships, source: :followed
+
+ has_many :passive_relationships, class_name:  "Relationship",
+                                  foreign_key: "followed_id",
+                                  dependent:   :destroy
+  has_many :followers, through: :passive_relationships, source: :follower
+  
   #when delete the user delete his microposts too
   has_many :microposts, dependent: :destroy
   #add virtual attributes for the remember token 
@@ -18,10 +28,10 @@ class User < ApplicationRecord
   validates :password, presence: true, length: {minimum: 6}, allow_nil: true
   #Returns the hash digest of the given string
   def User.digest(string)
-    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
+    cost = ActiveModel::SecurePassword.min_cost ?   BCrypt::Engine::MIN_COST :
      BCrypt::Engine.cost
      BCrypt::Password.create(string, cost: cost)
-  end
+  end 
 
   #Returns a random token 
   def User.new_token
@@ -61,7 +71,31 @@ end
   #defines a proto-feed
   #see the full Following users implementation,SQL injection
   def feed
-    Micropost.where("user_id = ?", id)
+    following_ids = "SELECT followed_id FROM relationships
+                     WHERE  follower_id = :user_id"
+    Micropost.where("user_id IN (#{following_ids})
+                     OR user_id = :user_id", user_id: id)
+  end
+
+  def follow(other_user)
+    # active_relationship.create(followed_id: other_user.id)
+    following << other_user
+  end
+
+  def unfollow(other_user)
+    #active_relationship.find_by(followed_id: other_user.id).destroy
+    following.delete(other_user)
+  end
+  #returns true if the current user is following the other user
+  def following?(other_user)
+    #!active_relationships.create(followed_id: other_user.id).nil?
+    #following.include?(other_user)
+    following.include?(other_user)
+  end
+
+  def correct_user
+    @micropost = current_user.microposts.find_by(id: params[:id])
+    redirect_to root_path if @micropost.nil?
   end
 
   private

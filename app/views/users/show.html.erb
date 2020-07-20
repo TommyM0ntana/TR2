@@ -1,15 +1,19 @@
 <body class='main'>
   <div class="container pt-3 bg-light shadow rounded">
-     <%= gravatar_for @user%>
-     <div class='p-3 mt-3 shadow row mb-3'>
-     <h3><%= @user.name.capitalize%></h3>
-      <div class="container">
-        <% if @user.microposts.any? %>
-        <h1 class='h1'>Microposts (<%= @user.microposts.count %>)</h1>
-        <%= render @microposts %>
-        <%= will_paginate @microposts %>
-        <% end %>
-      </div>
+    <%= gravatar_for @user%>
+    <h3><%= @user.name.capitalize%></h3>
+    <div class='p-3 mt-3 shadow row mb-3'>
+  
+     <div class="container">
+     <%= render 'shared/stats' %>
+      <%= render 'follow_form' if logged_in? %>
+     <% if @user.microposts.any? %>
+     <h1 class='h1'>Microposts (<%= @user.microposts.count%>)</h1>
+     <%= render @microposts %>
+     <%= will_paginate @microposts %>
+     <% end %>
+
+     </div>
   </div>
 </body>
  

@@ -156,8 +156,13 @@ assert_not @micropost.valid?
 # assert_not_nil @micropost.user_id
 
 2. Differenza tra find_by e where?
-   fare esempio nella console.
 
-3. default_scope -> { order(created_at: :desc) }
+def feed
+Micropost.where("user_id = ?", id)
+end
 
-4.microposts_controller/correct_user
+3.microposts_controller/correct_user
+
+Chap 14
+
+user.followers.map(&:id)
